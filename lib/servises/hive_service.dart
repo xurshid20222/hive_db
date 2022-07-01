@@ -22,3 +22,16 @@ class HiveDB {
   }
   
 }
+
+class HiveServices{
+  Future<void> storeUser(String name, String password)async{
+    var box = await  Hive.openBox('my_hive_db');
+    box.put('userName', name);
+    box.put('userPassword', password);
+
+
+    var usern = box.get('userName', defaultValue: 'Haa');
+    var userp = box.get('userPassword', defaultValue: 'Haa');
+    return usern;
+  }
+}
